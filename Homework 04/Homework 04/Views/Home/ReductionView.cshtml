@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Homework_04.Models.Reduction>
+
+
+@{
+    ViewBag.Title = "ReductionView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Reduction</h1>
+    <p class="lead">
+        Reducing the amount of non-recyclable products that you use, is a great way to aid the fight against pollution. The more non-recyclable items you throw away, the more of them end up in our oceans, and in our landfills      <br />
+        <br />
+        You can use the attached table to track your weekly usage of non-recyclable items, and therefore be more conscious of your waste reduction efforts.
+    </p>
+</div>
+
+
+    
+
+    <style>
+        body {
+            color: #404e67;
+            background: #f5f7fa;
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WeekID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KilosNotRecycled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeekID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KilosNotRecycled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>

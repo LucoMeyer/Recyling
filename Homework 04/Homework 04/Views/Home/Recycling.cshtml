@@ -1,0 +1,38 @@
+﻿
+
+@using Homework_04.Models;
+@{
+    ViewBag.Title = "Recycling";
+    var material = ViewData["material"] as Materials;
+    if (material != null)
+    {
+        ViewBag.message = material.Name;
+    }
+
+}
+<div class="jumbotron">
+    <h1>Recycling</h1>
+    <p class="lead">
+        Recycling is the backbone of the fight against pollution! But it can be tough to understand the various materials that can or can not be recycled. Understanding the ins and outs of these materials can allow you to greatly contribute to recycling efforts!        <br />
+        <br />
+        To discover retailers of eco-friendly products near you, please make use of the provided Google Map.
+    </p>
+
+
+    @Html.ActionLink("Glass", "ShowMaterial", new { materialType = 0} )
+
+    @Html.ActionLink("Aluminium", "ShowMaterial", new { materialType = 1 })
+
+    @Html.ActionLink("Plastics", "ShowMaterial", new { materialType = 2 })
+
+    @Html.ActionLink("Batteries", "ShowMaterial", new { materialType = 3 })
+
+</div>
+
+<style>
+    body {
+        color: #404e67;
+        background: #f5f7fa;
+        font-family: "Open Sans", sans-serif;
+    }
+</style>

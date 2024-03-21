@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Prevention";
+
+
+}
+
+
+
+
+<div class="jumbotron">
+    <h1>Prevention</h1>
+    <p class="lead">
+        The best way to reduce pollution is not by simply reducing it, but rather attempting to prevent it completely! This can be done by using products that do not contribute to pollution, by being non-single use items. These items include canvas shopping bags, metal straws, etc.        <br />
+        <br />
+        
+    </p>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        To discover retailers of eco-friendly products near you, please make use of the provided Google Map.
+    </div>
+
+    <div class="col-md-6">
+
+        <input id="input" style="height:30px; width:400px;">
+        <div id="map" style="height:400px; width:400px;"></div>
+        <script>
+
+            function initMap() {
+                var location = {
+                    lat: 40.000,
+                    lng: -79.000
+                }
+                var options = {
+                    center: location,
+                    zoom: 9
+                }
+
+                if (navigator.geolocation) {
+                    console.log('geolocation is here!');
+
+                    navigator.geolocation.getCurrentPosition((loc) => {
+
+                        location.lat = loc.coords.latitude;
+                        location.lng = loc.coords.longitude;
+
+                        map = new google.maps.Map(document.getElementById("map"), options);
+                    },
+                        (err) => {
+                            console.log("User clicked no location");
+                            map = new google.maps.Map(document.getElementById("map"), options);
+                        }
+                    )
+                } else {
+                    console.log('geolocation not supported');
+                    map = new google.maps.Map(document.getElementById("map"), options);
+                }
+
+                autocomplete = new google.maps.places.Autocomplete(document.getElementById("input"),
+                    {
+                        componentRestrictions: { 'country': ['ZA'] },
+                        fields: ['geometry', 'name'],
+                        types: ['establishment']
+
+
+                    })
+
+                autocomplete.addListener("place_changed", () => {
+
+                    const place = autocomplete.getPlace();
+                    new google.maps.Marker({
+                        position: place.geometry.location,
+                        title: place.name,
+                        map: map
+                    })
+                })
+
+            }
+
+
+        </script>
+
+        <script async
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbX9jhEdNem1aG4Nk8m-7hbC-ZOeExGf0&libraries=places&callback=initMap">
+        </script>
+
+    </div>
+
+
+</div>
+
+<style>
+    body {
+        color: #404e67;
+        background: #f5f7fa;
+        font-family: "Open Sans", sans-serif;
+    }
+</style>
+

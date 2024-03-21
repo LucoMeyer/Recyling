@@ -1,0 +1,102 @@
+﻿
+
+@using Homework_04.Models;
+@{
+    ViewBag.Title = "ShowMaterial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var material = ViewData["material"] as Materials;
+    if (material != null)
+    {
+        ViewBag.message = material.Name;
+    }
+    var uniqueMat = ViewData["uniqueMaterial"];
+
+}
+<div class="jumbotron">
+
+    <h1>@material.Name</h1>
+    
+    @if (material != null && !String.IsNullOrEmpty(material.Name))
+    {
+        <p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.Label("Name")
+                    </th>
+                    <th>
+                        @Html.Label("Description")
+                    </th>
+                    <th>
+                        @Html.Label("Procedure")
+                    </th>
+                    <th>
+                        @Html.Label("BiodegradeTime")
+                    </th>
+                    <th>
+                        @Html.Label("Pollution Percentage")
+                    </th>
+                    <th>
+                        @Html.Label("Priority")
+                    </th>
+                    <th>
+                        @Html.Label("Threat")
+                    </th>
+                    <th>
+                        @Html.Label("Unique Material Property")
+                    </th>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.Procedure)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.BiodegradeTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.PollutionPercentage)
+                    </td>
+                    <td>
+                        <!-- Priority -->
+                        @Html.DisplayFor(modelItem => material.mPriority)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => material.mThreat)
+                        <!-- Threat -->
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => uniqueMat)
+                        <!-- Threat -->
+                    </td>
+                </tr>
+            </table>
+        </p>
+
+    }
+
+    @Html.ActionLink("Glass", "ShowMaterial", new { materialType = 0 })
+
+    @Html.ActionLink("Aluminium", "ShowMaterial", new { materialType = 1 })
+
+    @Html.ActionLink("Plastics", "ShowMaterial", new { materialType = 2 })
+
+    @Html.ActionLink("Batteries", "ShowMaterial", new { materialType = 3 })
+
+</div>
+
+<style>
+    body {
+        color: #404e67;
+        background: #f5f7fa;
+        font-family: "Open Sans", sans-serif;
+    }
+</style>
+
